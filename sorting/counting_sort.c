@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-
 /**
  * In computer science, counting sort is an algorithm for sorting a collection
  * of objects according to keys that are small integers; that is, it is an
@@ -32,6 +29,9 @@
  * Output:
  * 		1 10 32 65 75 92
  * */
+
+#include <stdio.h>
+#include <stdlib.h>
 
 int main(int argc, char **argv){
 	int i;
