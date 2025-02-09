@@ -36,8 +36,8 @@
 int main(int argc, char **argv){
 	int i;
 	int smaller_key;
-	int nA = atoi(argv[1]);
-	int nB = atoi(argv[3]) - atoi(argv[2]) + 1;
+	int nA = atoi(argv[1]); // Number of elements in array A
+	int nB = atoi(argv[3]) - atoi(argv[2]) + 1; // Range of key values
 	int A[nA],B[nB],C[nA];
 	
 	smaller_key = atoi(argv[2]);
@@ -48,12 +48,15 @@ int main(int argc, char **argv){
 	for(i = 0;i < nB;i ++)
 		B[i] = 0;
 	
+	// Count the occurrences of each key value in array A
 	for(i = 0;i < nA;i ++)
 		B[A[i] - smaller_key] ++;
 	
+	// Compute the prefix sums in count array B
 	for(i = 1;i < nB;i ++)
 		B[i] = B[i] + B[i - 1];
-		
+	
+    // Place the elements of array A into their sorted positions in array C
 	for(i = nA - 1;i >= 0;i --){
 		C[--B[A[i] - smaller_key]] = A[i];
 	}
