@@ -1,7 +1,9 @@
 /*
- * This program implements the Merge Sort algorithm in C.
- * Merge Sort is a divide-and-conquer algorithm that divides the array into halves,
- * recursively sorts each half, and then merges the sorted halves to produce the sorted array.
+ * This program implements the Merge Sort algorithm to sort an array of integers.
+ * Merge Sort is a divide-and-conquer algorithm that works by recursively dividing
+ * the array into two halves, sorting each half, and then merging the sorted halves
+ * to produce the sorted array.
+ *
  *
  * The program consists of three main functions:
  * 1. merge: Merges two sorted halves of the array into a single sorted array.
