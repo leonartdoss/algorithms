@@ -26,12 +26,12 @@ void quick_sort(int *array,int a,int b);
 void print_array(int *array, int a, int b);
 
 int main(int argc, char **argv){
-    // Read the number of elements from the command line arguments
+	// Read the number of elements from the command line arguments
 	int n = atoi(argv[1]);
 	int i;
 	int array[n];
 	
-    // Read the elements into the array
+	// Read the elements into the array
 	for(i = 0;i < n;i ++)
 		array[i] = atoi(argv[i + 2]);	
 	
@@ -52,7 +52,7 @@ int divide(int *array, int a, int b){
 	int v = array[left];
 	int aux;
 	
-    // Partition the array around the pivot
+	// Partition the array around the pivot
 	while(left < right){
 		while((array[left] <= v) && (left <= b))
 			left ++;
@@ -72,10 +72,10 @@ int divide(int *array, int a, int b){
 			
 void quick_sort(int *array, int a, int b){
 	if(a < b){
-        // Partition the array and get the pivot index
+		// Partition the array and get the pivot index
 		int p = divide(array,a,b);
 		print_array(array,a,b);
-        // Recursively sort the subarrays
+		// Recursively sort the subarrays
 		quick_sort(array,a,p - 1);
 		quick_sort(array,p + 1,b);
 	}
