@@ -56,7 +56,7 @@ int main(int argc, char **argv){
 	for(i = 1;i < nB;i ++)
 		B[i] = B[i] + B[i - 1];
 	
-    // Place the elements of array A into their sorted positions in array C
+	// Place the elements of array A into their sorted positions in array C
 	for(i = nA - 1;i >= 0;i --){
 		C[--B[A[i] - smaller_key]] = A[i];
 	}
