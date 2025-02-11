@@ -8,7 +8,6 @@ Welcome to the Algorithms Repository! This repository contains a collection of a
 - [Algorithms](#algorithms)
 - [Data Structures](#data-structures)
 - [Compilation and Execution](#compilation-and-execution)
-- [Contributing](#contributing)
 
 ## Introduction
 
