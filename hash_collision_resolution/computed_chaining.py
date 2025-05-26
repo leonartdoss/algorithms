@@ -36,7 +36,7 @@ class ComputedChainingHashTableSafe:
             print(f"Position {next_position} is being used by key {self.table[next_position]}")
             if (attempts == self.size): # The table is full
                 return -1, -1, -1
-            nof = self.table[h].number_of_offsets
+            nof = self.table[next_position].number_of_offsets
             inc = self._incrementing_function(self.table[next_position].key)
             next_position = (next_position + inc * nof) % self.size
             attempts += 1
@@ -55,30 +55,25 @@ class ComputedChainingHashTableSafe:
 
     def _move(self, record: Record, h):
         attempts = 0
+        keys_to_move = [record.key]
         while (record.number_of_offsets is not None):
             attempts += 1
             if (attempts == self.size): # The table is full
-                return self.accesses
+                return False
+                        
             nof = record.number_of_offsets
             inc = self._incrementing_function(record.key)
             successor_position = (h + inc * nof) % self.size
+            keys_to_move.append(self.table[successor_position].key)
             self._increase_access()
             aux = Record(self.table[successor_position].key, self.table[successor_position].number_of_offsets)
-            self.table[successor_position].key = record.key
-            self.table[successor_position].number_of_offsets = None
-            print(f"Key: {record.key}; Target position: {successor_position}; Nof marked as None")
+            self.table[successor_position] = Record(None, None)
             record = aux
             h = successor_position
-            
-        
-        target_position, base_position, nof = self._get_target_position(h)
-        if (target_position != -1): # The insertion is possible
-            print(f"Key: {record.key}; Target position: {target_position}; Nof marked for {self.table[base_position].key}: {nof}")
-            self.table[target_position].key = record.key
-            self.table[base_position].number_of_offsets = nof
-        else:
-            print("Key not inserted.")
-        return self.accesses
+
+        for key in keys_to_move:
+            self.insert(key)
+        return True
 
     def insert(self, key):
         self.accesses = 0
@@ -104,6 +99,7 @@ class ComputedChainingHashTableSafe:
             else:
                 print("Key not inserted.")
         else:
+            self.table[self._hash(self.table[h].key)].number_of_offsets = None # New chain will be produced on moving process
             aux = self.table[h]
             self.table[h] = Record(key, None)
             print(f"Insert {key} in home address; Key: {aux} not in home address; reinserting")
